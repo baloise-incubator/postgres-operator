@@ -44,7 +44,7 @@ public class PostgresClaimWatcher implements Watcher<PostgresClaim> {
             kubernetesClient.customResourceDefinitions().create(customResourceDefinition);
         }
         MixedOperation<PostgresClaim, PostgresClaimList, DoneablePostgresClaim, Resource<PostgresClaim, DoneablePostgresClaim>> op = kubernetesClient.customResources(customResourceDefinition, PostgresClaim.class, PostgresClaimList.class, DoneablePostgresClaim.class);
-        op.watch(this);
+        op.inAnyNamespace().watch(this);
     }
 
     @Override
